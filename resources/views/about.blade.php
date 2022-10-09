@@ -1,16 +1,20 @@
 @extends('layouts.app')
-
 @section('header')
     <x-header>
         <x-slot:title>
-            Welcome to Blog Site!
+            Welcome to About us page!
         </x-slot:title>
-        Sub title welcome page!
+        Sub title About us page!
     </x-header>
 @endsection
 
 @section('content')
-
+    <div class="row">
+        <!-- Blog entries-->
+        <div class="col-lg-12">
+            <p class="lead mb-0"> About same text</p>
+        </div>
+    </div>
 @endsection
 
 @section('footer')
