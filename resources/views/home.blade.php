@@ -11,88 +11,74 @@
     <div class="row">
         <!-- Blog entries-->
         <div class="col-lg-8">
-            <!-- Featured blog post-->
-            <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg"
-                                  alt="..."/></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2022</div>
-                    <h2 class="card-title">Featured Post Title</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid
-                        atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero
-                        voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a class="btn btn-primary" href="#!">Read more →</a>
-                </div>
-            </div>
+            @forelse($posts as $post)
+                @if($loop->last)
+                    <!-- Featured blog post-->
+                    <div class="card mb-4">
+                        <a href="{{ route('posts.show', $post->id) }}"><img class="card-img-top"
+                                                                            src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg"
+                                                                            alt="..."/></a>
+                        <div class="card-body">
+                            <div class="small text-muted">{{ $post->created_at->format('d-m-Y') }}</div>
+                            <h2 class="card-title h4">{{ $post->title }} : {{ $post->id }}</h2>
+                            <p class="card-text">{{ $post->text }} </p>
+                            <a class="btn btn-primary" href="{{ route('posts.show', $post->id) }}">Read more →</a>
+                        </div>
+                    </div>
+                @endif
+            @empty
+                <div>Don't have eny posts in database !!!</div>
+
+            @endforelse
             <!-- Nested row for non-featured blog posts-->
             <div class="row">
                 <div class="col-lg-6">
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                          alt="..."/></a>
-                        <div class="card-body">
-                            <div class="small text-muted">January 1, 2022</div>
-                            <h2 class="card-title h4">Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                                aliquid atque, nulla.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
-                        </div>
-                    </div>
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                          alt="..."/></a>
-                        <div class="card-body">
-                            <div class="small text-muted">January 1, 2022</div>
-                            <h2 class="card-title h4">Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                                aliquid atque, nulla.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
-                        </div>
-                    </div>
+                    @forelse($posts as $post)
+                        @if($loop->odd)
+                            <!-- Blog post-->
+                            <div class="card mb-4">
+                                <a href="{{ route('posts.show', $post->id) }}"><img class="card-img-top"
+                                                                                    src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
+                                                                                    alt="..."/></a>
+                                <div class="card-body">
+                                    <div class="small text-muted">{{ $post->created_at->format('d-m-Y') }}</div>
+                                    <h2 class="card-title h4">{{ $post->title }} : {{ $post->id }}</h2>
+                                    <p class="card-text">{{ $post->text }} </p>
+                                    <a class="btn btn-primary" href="{{ route('posts.show', $post->id) }}">Read more
+                                        →</a>
+                                </div>
+                            </div>
+                        @endif
+                    @empty
+                        <div>Don't have eny posts in database !!!</div>
+
+                    @endforelse
+
                 </div>
                 <div class="col-lg-6">
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                          alt="..."/></a>
-                        <div class="card-body">
-                            <div class="small text-muted">January 1, 2022</div>
-                            <h2 class="card-title h4">Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                                aliquid atque, nulla.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
-                        </div>
-                    </div>
-                    <!-- Blog post-->
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
-                                          alt="..."/></a>
-                        <div class="card-body">
-                            <div class="small text-muted">January 1, 2022</div>
-                            <h2 class="card-title h4">Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis
-                                aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
-                        </div>
-                    </div>
+                    @forelse($posts as $post)
+                        @if($loop->even)
+                            <!-- Blog post-->
+                            <div class="card mb-4">
+                                <a href="{{ route('posts.show', $post->id) }}"><img class="card-img-top"
+                                                                                    src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg"
+                                                                                    alt="..."/></a>
+                                <div class="card-body">
+                                    <div class="small text-muted">{{ $post->created_at->format('d-m-Y') }}</div>
+                                    <h2 class="card-title h4">{{ $post->title }} : {{ $post->id }}</h2>
+                                    <p class="card-text">{{ $post->text }}</p>
+                                    <a class="btn btn-primary" href="{{ route('posts.show', $post->id) }}">Read more
+                                        →</a>
+                                </div>
+                            </div>
+                        @endif
+                    @empty
+                        <div>Don't have eny posts in database !!!</div>
+                    @endforelse
                 </div>
             </div>
-            <!-- Pagination-->
-            <nav aria-label="Pagination">
-                <hr class="my-0"/>
-                <ul class="pagination justify-content-center my-4">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a>
-                    </li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                </ul>
-            </nav>
+
+            {{  $posts->links('pagination::custome') }}
         </div>
         <!-- Side widgets-->
         <div class="col-lg-4">
@@ -114,9 +100,12 @@
                     <div class="row">
                         <div class="col-sm-6">
                             @forelse($categories as $category)
+                                {{--                                {{ $loop->index+1}}--}}
                                 <ul class="list-unstyled mb-0">
-                                    @if($category->id >= 0 && $category->id <= 3 )
-                                        <li><a href="#!">{{ $category->name }}</a></li>
+                                    @if($loop->odd )
+                                        <li>
+                                            <a href="{{ route('home')}}?category_id={{ $category->id }}">{{ $category->name }}</a>
+                                        </li>
                                     @endif
                                 </ul>
                             @empty
@@ -126,8 +115,10 @@
                         <div class="col-sm-6">
                             @forelse($categories as $category)
                                 <ul class="list-unstyled mb-0">
-                                    @if($category->id >= 3 && $category->id <= 5 )
-                                        <li><a href="#!">{{ $category->name }}</a></li>
+                                    @if($loop->even)
+                                        <li>
+                                            <a href="{{ route('home') }}?category_id={{ $category->id }}">{{ $category->name }}</a>
+                                        </li>
                                     @endif
                                 </ul>
                             @empty

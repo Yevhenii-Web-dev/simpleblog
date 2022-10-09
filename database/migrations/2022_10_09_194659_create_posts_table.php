@@ -15,10 +15,10 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-//            $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('cascade');
+            $table->foreignId('category_id')->nullable()->constrained('categories')->onDelete('cascade');
 //            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
 
-            $table->string('title')->unique();
+            $table->string('title');//->unique();
             $table->text('text');
             $table->string('image')->default('default.jpg');
 
