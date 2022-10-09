@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('header')
-<x-header>
-    <x-slot:title>
-        Welcome to Home page!
-    </x-slot:title>
-    Sub title Home page!
-</x-header>
+    <x-header>
+        <x-slot:title>
+            Welcome to Home page!
+        </x-slot:title>
+        Sub title Home page!
+    </x-header>
 @endsection
 @section('content')
     <div class="row">
@@ -113,18 +113,26 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">Web Design</a></li>
-                                <li><a href="#!">HTML</a></li>
-                                <li><a href="#!">Freebies</a></li>
-                            </ul>
+                            @forelse($categories as $category)
+                                <ul class="list-unstyled mb-0">
+                                    @if($category->id >= 0 && $category->id <= 3 )
+                                        <li><a href="#!">{{ $category->name }}</a></li>
+                                    @endif
+                                </ul>
+                            @empty
+                                <div>Don't have eny category in database !!!</div>
+                            @endforelse
                         </div>
                         <div class="col-sm-6">
-                            <ul class="list-unstyled mb-0">
-                                <li><a href="#!">JavaScript</a></li>
-                                <li><a href="#!">CSS</a></li>
-                                <li><a href="#!">Tutorials</a></li>
-                            </ul>
+                            @forelse($categories as $category)
+                                <ul class="list-unstyled mb-0">
+                                    @if($category->id >= 3 && $category->id <= 5 )
+                                        <li><a href="#!">{{ $category->name }}</a></li>
+                                    @endif
+                                </ul>
+                            @empty
+                                <div>Don't have eny category in database !!!</div>
+                            @endforelse
                         </div>
                     </div>
                 </div>
